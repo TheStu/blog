@@ -1,0 +1,8 @@
+<h1><%= @section.titleize %></h1>
+
+<% @posts.each do |post| %>
+  <%= post.title %>
+<% end %>
+
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+

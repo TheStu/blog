@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= sanitize full_title(yield(:title)) %></title>
+  <meta name="description" content="<%= meta_desc(yield(:desc)) %>" />
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= analytics_init if Rails.env.production? && !user_signed_in? %>
+  <%= auto_discovery_link_tag(:atom, posts_url(format: 'atom')) %>
+  <link href='http://fonts.googleapis.com/css?family=Exo:900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <%= render "shared/header" %>
+
+  <%= render 'shared/alerts' %>
+
+  <%= render "shared/logo" %>
+
+  <div class="container" id="main-container">
+    <div class="row">
+      <div class="span8 main-content">
+        <%= render 'shared/newsletter' %>
+        <div class="yield-content">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="span4">
+        <%= render "shared/sidebar" %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

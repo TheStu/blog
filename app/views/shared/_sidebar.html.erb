@@ -1,0 +1,46 @@
+<div class="sidebar">
+  <ul class="nav nav-tabs sidebar-nav-tabs">
+    <li><a href="#forever" data-toggle="tab" id="sidebarContentTab" class="all-time-tab">
+      <%= image_tag 'heart.png', alt: 'all time most popular' %>
+      <p>ALL TIME</p>
+    </a></li>
+    <li class="active"><a href="#month" data-toggle="tab" id="sidebarContentTab" class="popular-tab">
+      <%= image_tag 'month.png', alt: 'popular this month' %>
+      <p>POPULAR</p>
+    </a></li>
+    <li><a href="#reviews" data-toggle="tab" id="sidebarContentTab" class="gear-tab">
+      <%= image_tag 'gear.png', alt: 'latest gear reviews' %>
+      <p>GEAR REVIEWS</p>
+    </a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade" id="forever">
+      <%= render "shared/tabs/forever" %>
+    </div>
+
+    <div class="tab-pane fade active in" id="month">
+      <%= render "shared/tabs/month" %>
+    </div>
+
+    <div class="tab-pane fade" id="reviews">
+      <%= render "shared/tabs/reviews" %>
+    </div>
+  </div>
+  <h2 class="h2-margin-left">Daily Gear Deals</h2>
+    <ul class="dotd-list">
+      <% Dotd.find_each do |deal| %>
+        <li>
+          <a href="<%= deal.buy_url %>", target="_blank", rel="nofollow">
+            <%= image_tag deal.small_image_url, alt: dotd_title(deal), title: dotd_title(deal), class: 'product-pic' %>
+            <%= image_tag "#{deal.merchant_name.gsub('.com','').downcase}.png", class: 'favicon' %>
+            <%= content_tag :span, truncate(dotd_title(deal), length: 40, omission: '..'), class: 'deal-title' %>
+            <%= content_tag :span, "$#{deal.sale_price}", class: 'deal-sale-price' %>
+            <div class="deal-meta">
+              <%= content_tag :i, "Reg. $#{deal.retail_price}", class: 'deal-retail-price' %>
+              <%= content_tag :span, "#{deal.percent_off}% off!", class: 'deal-percent-off' %>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+</div>

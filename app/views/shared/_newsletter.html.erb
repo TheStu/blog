@@ -1,0 +1,15 @@
+<div class="newsletter">
+  <div class="newsletter-click newsletter-prompt">
+    The Best Newsletter You're Not (Yet) Subscribed To
+    <%= image_tag 'arrow.png', class: 'newsletter-arrow' %>
+  </div>
+  <div class="newsletter-expand newsletter-content">
+    <%= form_tag newsletters_newsletter_sign_up_path, method: 'get', class: 'newsletter-form' do %>
+      <div class="newsletter-inputs">
+        <%= text_field_tag :name, params[:name], placeholder: 'Name' %>
+        <%= text_field_tag :email_address, params[:email_address], placeholder: 'Email Address' %>
+      </div>
+      <%= submit_tag "Subscribe", class: 'newsletter-submit' %>
+    <% end %>
+  </div>
+</div>

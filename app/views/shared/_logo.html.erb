@@ -1,0 +1,13 @@
+<div id="logo-container">
+  <div class="container">
+    <div class="row">
+      <div class="span6 logo">
+        <h1><%= link_to image_tag('logo.png', alt: 'Backpacking Talk', title: 'Backpacking Talk'), root_path %></h1>
+      </div>
+      <div class="span6 logo-ad">
+        <% ad = Ad.offset(rand(Ad.count)).first %>
+        <%= link_to image_tag(ad.ad_content), ad.ad_url, target: '_blank', rel: 'nofollow' %>
+      </div>
+    </div>
+  </div>
+</div>

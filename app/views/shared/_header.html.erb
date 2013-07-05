@@ -1,0 +1,48 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav pull-right header-meta">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">
+              <%= image_tag "search.png", alt: 'Search', title: 'Search' %>
+              <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu search-dropdown">
+            <li>
+              <%= form_tag posts_path, method: 'get', class: 'search-form' do %>
+                <%= text_field_tag :q, params[:q], class: 'search-query', placeholder: 'Search' %>
+              <%= submit_tag "Submit", type: :image, src: "/assets/search.png", class: 'search-submit' %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">
+              <%= image_tag "question.png", alt: 'Information', title: 'Information' %>
+              <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to '<i class="icon-inbox"></i> Contact'.html_safe, contact_path %></li>
+            <li><%= link_to '<i class="icon-question-sign"></i> About'.html_safe, about_path %></li>
+            <% if user_signed_in? %>
+              <li class="divider"></li>
+              <li><%= link_to "New Category", new_category_path %></li>
+              <li><%= link_to "New Post", new_post_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete" %></li>
+              <li><%= link_to "Edit User", edit_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

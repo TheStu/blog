@@ -1,0 +1,3 @@
+<ul class="sidebar-tab-ul">
+  <%= render partial: 'shared/tabs/post', collection: Post.order('all_time_view_count DESC').first(3)  %>
+</ul>

@@ -1,0 +1,59 @@
+<br>
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well">
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <h3>Categories</h3>
+      <%= hidden_field_tag "post[category_ids][]", nil %>
+      <% Category.find_each do |category| %>
+        <%= check_box_tag "post[category_ids][]", category.id, @post.category_ids.include?(category.id), id: dom_id(category) %>
+        <%= label_tag dom_id(category), category.name %><br>
+      <% end %>
+    </div>
+    <h3>Picture</h3>
+    <div class="field">
+      <%= f.label :flickr_url %><br>
+      <%= f.text_field :flickr_url %>
+    </div>
+    <div class="field">
+      <%= f.label :picture_alt_text %><br>
+      <%= f.text_field :picture_alt_text %>
+    </div>
+    <h3>Post Meta</h3>
+    <div class="field">
+      <%= f.label :section %><br>
+      <%= f.select :section, [['Backpacking', 'backpacking'],
+                              ['Gear', 'gear'],
+                              ['Food', 'food'],
+                              ['Photography', 'photography']] %>
+    </div>
+    <div class="field">
+      <%= f.label :meta_description %><br>
+      <%= f.text_field :meta_description %>
+    </div>
+    <br>
+    <div class="actions">
+      <%= f.submit 'Create Post', class: 'my-btn' %>
+    </div>
+  </div>
+<% end %>
