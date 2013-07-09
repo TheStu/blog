@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130705054353) do
+ActiveRecord::Schema.define(version: 20130706211300) do
 
   create_table "ads", force: true do |t|
     t.string   "ad_content"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20130705054353) do
     t.string   "pic_large_square_url"
     t.string   "meta_description"
     t.string   "section"
+    t.string   "pic_medium_url"
   end
 
   add_index "posts", ["all_time_view_count", "monthly_view_count"], name: "index_posts_on_all_time_view_count_and_monthly_view_count", using: :btree

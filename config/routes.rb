@@ -12,7 +12,7 @@ Blog::Application.routes.draw do
 
   resources :posts do
     collection do
-      get 'section/:section', to: 'posts#section', as: 'section'
+      get 'section/:section', to: 'posts#section', as: 'section', constraints: proc { |req| ['backpacking', 'gear', 'food', 'photography'].include?(req.params[:section]) }
     end
   end
   resources :categories

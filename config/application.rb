@@ -23,5 +23,9 @@ module Blog
     config.assets.initialize_on_precompile = false
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    Tire.configure do
+      url ENV['SEARCHBOX_URL']
+    end
   end
 end

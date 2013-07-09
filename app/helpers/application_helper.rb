@@ -1,10 +1,10 @@
 module ApplicationHelper
   def full_title(page_title) #Returns the full title on a per-page basis.
-    base_title = "XXX"
+    base_title = "Backpacking Talk"
     if page_title.empty?
       base_title
     elsif page_title == "home"
-      "#{base_title} | XXX"
+      "#{base_title} | One backpacker encounters another backpacker in the woods. He says, \"So there's this site called Backpacking Talk.\" The other backpacker replies, \" ..."
     else
       "#{page_title} | #{base_title}"
     end
@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def meta_desc(desc) #Returns the full title on a per-page basis.
     if desc.empty?
-      "XXX"
+      "One day I will transform my sleeping bag into a backpack and be the first sleeping bagger. We will go lighter and faster than our backpacker cousins"
     else
       desc
     end

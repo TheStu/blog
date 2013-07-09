@@ -1,3 +1,6 @@
+<% provide(:title, "home") %>
+<% provide(:desc, "") %>
+
 <% @posts.each do |post| %>
 
   <h2><%= link_to post.title, post_path(post) %></h2>

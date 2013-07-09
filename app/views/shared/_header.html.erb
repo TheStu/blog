@@ -1,13 +1,56 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <ul class="nav pull-left">
+
+        <% ['backpacking', 'gear', 'photography', 'food'].each do |section| %>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle"
+               data-toggle="dropdown"
+               href="#">
+                <%= image_tag "#{section}.png", alt: section %> <%= section.titleize %>
+                <b class="caret"></b>
+              </a>
+            <ul class="dropdown-menu section-dropdown">
+              <%= render partial: 'shared/tabs/post', collection: Post.where("section = ?", section).order('created_at DESC').first(3) %>
+              <li class="section-read-more">
+                <strong>
+                  <%= link_to "More From #{section.titleize} <i class=\"icon-arrow-right icon-white\"></i>".html_safe, section_posts_path(section: section) %>
+                </strong>
+              </li>
+            </ul>
+          </li>
+
+        <% end %>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">
+              <%= image_tag "tags.png", alt: 'tags' %> Tags
+              <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu">
+            <% Category.order('name DESC').each do |category| %>
+              <li>
+                <a href="<%= category_path(category) %>">
+                  <%= category.name %> (<%= category.tagged_posts %>)
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+      </ul>
+
       <ul class="nav pull-right header-meta">
 
         <li class="dropdown">
           <a class="dropdown-toggle"
              data-toggle="dropdown"
              href="#">
-              <%= image_tag "search.png", alt: 'Search', title: 'Search' %>
+              <%= image_tag "search.png", alt: 'Search' %>
               <b class="caret"></b>
             </a>
           <ul class="dropdown-menu search-dropdown">

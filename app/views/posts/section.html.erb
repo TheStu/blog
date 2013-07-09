@@ -1,8 +1,11 @@
-<h1><%= @section.titleize %></h1>
+<% provide(:title, "#{@section.titleize} Posts") %>
+<% provide(:desc, "Read all the posts in the #{@section.titleize} section on Backpacking Talk") %>
 
-<% @posts.each do |post| %>
-  <%= post.title %>
-<% end %>
+<h1><%= @section.titleize %> Section</h1>
 
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+
+<%= render partial: 'shared/group', collection: @groups %>
+
+
+<%= will_paginate @groups, renderer: BootstrapPagination::Rails %>
 

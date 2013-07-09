@@ -53,6 +53,7 @@ gem "will_paginate-bootstrap", "~> 0.2.3"
 gem "flickraw", "~> 0.9.6"
 gem "nokogiri", "~> 1.6.0"
 gem "fancybox2-rails", "~> 0.2.4"
+gem "tire", "~> 0.6.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

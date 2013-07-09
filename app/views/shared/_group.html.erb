@@ -1,0 +1,25 @@
+<div class="group-row">
+  <% group.each_with_index do |post, i| %>
+    <div class="result-post <%= i == 0 ? "result-post-margin" : "" %>">
+      <div class="result-pic">
+        <%= link_to image_tag(post.pic_medium_url, alt: post.picture_alt_text), post_path(post), class: 'result-pic'  %>
+      </div>
+      <h2><%= link_to post.title, post_path(post), class: "result-title" %></h2>
+      <% unless params[:controller] == "posts" && params[:action] == "section" %>
+        <span class="result-section">
+          <%= link_to post.section.titleize, section_posts_path(section: post.section) %>
+        </span>
+      <% end %>
+      <span class="result-date">
+        <i class="icon-calendar"></i>
+        <i><%= pretty_date(post.created_at) %></i>
+      </span>
+      <i class="icon-tags"></i>
+      <%= post.categories.map { |c|
+            "<a href=\"#{category_path(c)}\" class=\"result-category\">#{c.name}</a>"
+           }.join(', ').html_safe %>
+    </div>
+  <% end %>
+</div>
+
+

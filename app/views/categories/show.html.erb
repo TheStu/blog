@@ -1,14 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @category.name) %>
+<% provide(:desc, "Look through the #{@category.tagged_posts} posts in the #{@category.name} here on Backpacking Talk") %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<h1><%= @category.name %> Category</h1>
 
-<p>
-  <strong>Tagged posts:</strong>
-  <%= @category.tagged_posts %>
-</p>
+<%= render partial: 'shared/group', collection: @groups %>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+
+<%= will_paginate @groups, renderer: BootstrapPagination::Rails %>

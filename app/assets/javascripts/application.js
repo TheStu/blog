@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require fancybox
-//= require bootstrap
+//= require bootstrap-transition.js
+//= require bootstrap-tab.js
+//= require bootstrap-alert.js
+//= require bootstrap-dropdown.js
 //= require_tree .

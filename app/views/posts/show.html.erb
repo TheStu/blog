@@ -1,17 +1,55 @@
+<% provide(:title, @post.title) %>
+<% provide(:desc, @post.meta_description) %>
+
 <h1><%= @post.title %></h1>
 
 <div class="meta-well">
-  <i class="icon-calendar"></i>
-  <%= content_tag :span, pretty_date(@post.created_at), class: 'post-date' %>
+  <span class="post-meta-unit">
+    <i class="icon-calendar"></i>
+    <%= content_tag :span, pretty_date(@post.created_at), class: 'post-date' %>
+  </span>
 
-  <i class="icon-tags"></i>
-  <%= @post.categories.map { |c|
-          "<a href=\"#{category_path(c)}\">#{c.name}</a>"
-         }.join(', ').html_safe %>
+  <span class="post-meta-unit">
+    <i class="icon-tags"></i>
+    <%= @post.categories.map { |c|
+            "<a href=\"#{category_path(c)}\">#{c.name}</a>"
+           }.join(', ').html_safe %>
+  </span>
+
+  <% if can? :edit, @post %>
+
+    <span class="post-meta-unit">
+      <i class="icon-edit"></i>
+      <%= link_to 'Edit', edit_post_path(@post) %>
+    </span>
+
+    <span class="post-meta-unit">
+      <i class="icon-remove"></i>
+      <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </span>
+
+  <% end %>
 </div>
 
 <div class="post-header-pic">
   <%= link_to image_tag(@post.pic_large_url, alt: @post.picture_alt_text, title: @post.picture_alt_text), @post.pic_large_url, class: 'fancybox' %>
+</div>
+
+<div class="post-citations">
+  <div class="citation-link">
+    <p>Picture Sources</p>
+    <i class="icon-chevron-down citation-chevron"></i>
+  </div>
+
+  <div class="citation-dropdown">
+    <ul>
+      <% @post.citations.each do |citation| %>
+        <li>
+          <%= link_to citation.text, citation.url, rel: 'nofollow', target: '_blank' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <div class="post-content">

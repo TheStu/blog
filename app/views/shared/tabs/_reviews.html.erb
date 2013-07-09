@@ -1,3 +1,3 @@
 <ul class="sidebar-tab-ul">
-  <%= render partial: 'shared/tabs/post', collection: Post.joins(:categories).where('categories.name = ?', 'Gear Reviews').order('created_at DESC').first(3)  %>
+  <%= render partial: 'shared/tabs/post', collection: Post.joins(:categories).order('created_at DESC').where('categories.name = ?', 'Gear Reviews').first(3)  %>
 </ul>

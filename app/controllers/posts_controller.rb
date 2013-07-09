@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.citations.build
   end
 
   # GET /posts/1/edit
@@ -67,14 +68,14 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
 
   def section
     @section = params[:section]
-    @posts = Post.where("section = ?", @section).paginate(:page => params[:page], :per_page => 10)
+    @groups = Post.order('created_at DESC').where("section = ?", @section).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
   end
 
   private
@@ -85,7 +86,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :pic_thumbnail_url, :pic_large_url, :pic_large_square_url, :flickr_url, :all_time_view_count, :monthly_view_count, :picture_alt_text, :section, :meta_description, category_ids: [])
+      params.require(:post).permit(:title, :content, :pic_thumbnail_url, :pic_large_url, :pic_large_square_url, :pic_medium_url, :flickr_url, :all_time_view_count, :monthly_view_count, :picture_alt_text, :section, :meta_description, :pictures_attributes, citations_attributes: [:id, :url, :text], category_ids: [])
     end
 
     def impression_count(post)

@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @groups = Post.joins(:categories).order('created_at DESC').where("categories.name = ?", @category.name).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
   end
 
   # GET /categories/new
@@ -58,7 +59,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end

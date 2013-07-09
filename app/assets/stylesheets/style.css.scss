@@ -76,6 +76,14 @@ input[type="checkbox"] {
   }
 }
 
+.my-warning-btn {
+  @extend .my-btn;
+  background-color: #FF0700;
+  &:hover {
+    background-color: #A60400;
+  }
+}
+
 .well {
   @include border-radius(0);
   @include box-shadow(0px 0px 0px white);
@@ -111,6 +119,54 @@ input[type="checkbox"] {
   ul > li:last-child > a, ul > li:last-child > span {
     @include border-top-right-radius(0);
     @include border-bottom-right-radius(0);
+  }
+}
+
+.group-row {
+  margin-bottom: 20px;
+  .result-post {
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+    .result-pic {
+      width: 280px;
+      max-height: 100px;
+      overflow: hidden;
+      img {
+        @include transition(all .5s linear);
+        margin-top: -10%;
+        opacity: .8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    h2 {
+      margin: 5px 0 0 0;
+      .result-title {
+        display: block;
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: bold;
+      }
+    }
+    .result-section {
+      display: block;
+      color: #333;
+      font-size: 18px;
+      line-height: 28px;
+    }
+    .result-date {
+      display: block;
+      color: #999;
+      font-size: 13px;
+    }
+    .result-category {
+      font-size: 13px;
+    }
+  }
+  .result-post-margin {
+    margin-right: 16px;
   }
 }
 
@@ -165,18 +221,78 @@ body {
     .header-meta > li:last-child {
       border-left: 1px solid $light-brown;
     }
-    .dropdown-menu {
-      @include border-radius(0px);
-      @include box-shadow(0px 0px 0px white);
-      border: 3px solid #000;
-      padding: 0;
-      li a {
-        padding: 5px 20px;
-        &:hover {
-          background-color: $header-hover;
-          background-image: none;
+    .nav {
+      .dropdown-menu {
+        @include border-radius(0px);
+        @include box-shadow(0px 0px 0px white);
+        border: 3px solid #000;
+        padding: 0;
+        li a {
+          padding: 5px 20px;
+          &:hover {
+            background-color: $header-hover;
+            background-image: none;
+          }
         }
       }
+      .section-dropdown {
+        .standard-li {
+          a {
+            padding: 0 10px 0 0;
+            margin-bottom: 10px;
+            white-space: normal;
+            width: 320px;
+            height: 75px;
+            opacity: .8;
+            @include transition(all .5s linear);
+            &:hover {
+              background-color: #fff;
+              opacity: 1;
+            }
+            .tab-post-pic {
+              width: 75px;
+              height: 75px;
+              float: left;
+              margin-right: 10px;
+            }
+            .tab-post-title {
+              font-size: 18px;
+              line-height: 22px;
+              color: $brown;
+              font-weight: bold;
+              display: block;
+              padding: 5px 0 0 0;
+            }
+            .tab-post-date {
+              color: #999;
+              font-size: 12px;
+              line-height: 13px;
+            }
+          }
+        }
+        .section-read-more a {
+          @include transition(all .5s linear);
+          background-color: $brown;
+          color: #fff;
+          display: block;
+          text-align: center;
+          &:hover {
+            background-color: $header-hover;
+          }
+        }
+      }
+    }
+  }
+  .nav > li > .dropdown-menu::before, .nav > li > .dropdown-menu::after {
+    content: '';
+    border: 0;
+  }
+  .nav li a.dropdown-toggle, .nav li.dropdown.open a.dropdown-toggle {
+    font-size: 16px;
+    color: #fff;
+    height: 26px;
+    &:hover {
+      color: #fff;
     }
   }
   .nav li.dropdown > .dropdown-toggle:hover, .nav li.dropdown.open > .dropdown-toggle, .nav li.dropdown.active > .dropdown-toggle, .nav li.dropdown.open.active > .dropdown-toggle {
@@ -191,10 +307,6 @@ body {
   .nav li.dropdown > .dropdown-toggle .caret, .nav li.dropdown > .dropdown-toggle:hover .caret, .nav li.dropdown.open > .dropdown-toggle .caret, .nav li.dropdown.active > .dropdown-toggle .caret, .nav li.dropdown.open.active > .dropdown-toggle .caret {
     border-top-color: #fff;
     border-bottom-color: #fff;
-  }
-  .nav > li > .dropdown-menu::before {
-    border-bottom-color: #333;
-    border-bottom-width: 3px;
   }
   .search-dropdown {
     width: 279px;
@@ -301,7 +413,6 @@ body {
   height: 1000px;
   margin-left: -20px;
   .sidebar-nav-tabs { //ul
-    height: 60px;
     width: 100%;
     border-bottom: 0;
     margin-bottom: 10px;
@@ -360,7 +471,7 @@ body {
           display: block;
           padding: 5px 0 0 0;
         }
-        .tab-post-view-count {
+        .tab-post-date {
           font-size: 12px;
           line-height: 13px;
           color: #999;
@@ -454,8 +565,8 @@ body {
 //                                       //
 ///////////////////////////////////////////
 
-.post-date {
-  padding-right: 10px;
+.post-meta-unit {
+  margin-right: 10px;
 }
 
 .post-header-pic {
@@ -465,6 +576,37 @@ body {
   margin-bottom: 10px;
   img {
     margin-top: -10%;
+  }
+}
+
+.post-citations {
+  @extend .meta-well;
+  border-width: 1px;
+  font-size: 11px;
+  line-height: 13px;
+  .citation-link {
+    height: 20px;
+    width: 570px;
+    p {
+      float: left;
+      margin: 1px 0 0;
+      opacity: .4;
+    }
+    i {
+      float: right;
+      opacity: .4;
+      margin-top: 0;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .citation-dropdown {
+    display: none;
+    clear: both;
+    ul {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -515,7 +657,7 @@ body {
 //                                       //
 ///////////////////////////////////////////
 
-#post_title, #post_flickr_url, #post_picture_alt_text, #post_meta_description {
+#post_title, #post_flickr_url, #post_picture_alt_text, #post_meta_description, .field-block > .field > input {
   width: 520px;
 }
 
@@ -524,6 +666,20 @@ body {
   height: 400px;
   font-size: 15px;
   line-height: 20px;
+}
+
+.add-citation-btn {
+  display: inline-block;
+  margin-top: 10px;
+  a {
+    @extend .my-btn;
+  }
+}
+
+.remove-citation-btn a {
+  @extend .my-warning-btn;
+  font-size: 11px;
+  padding: 4px 8px;
 }
 
 ///////////////////////////////////////////

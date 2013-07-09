@@ -39,6 +39,12 @@
       <%= f.label :picture_alt_text %><br>
       <%= f.text_field :picture_alt_text %>
     </div>
+    <div>
+      <%= f.fields_for :citations do |citation| %>
+        <%= render 'citation_fields', :f => citation %>
+      <% end %>
+      <p class="add-citation-btn"><%= link_to_add_fields "Add Citation", f, :citations %></p>
+    </div>
     <h3>Post Meta</h3>
     <div class="field">
       <%= f.label :section %><br>

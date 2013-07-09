@@ -5,11 +5,19 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
-  has_many :citations
+  has_many :citations, dependent: :destroy
+
+  accepts_nested_attributes_for :citations, :reject_if => lambda { |a| a[:url].blank? or a[:text].blank? }, :allow_destroy => true
 
   after_save :update_flickr_urls
   after_save :update_category_tagged_count
   after_destroy :update_category_tagged_count
+
+  validates_presence_of :title, :content, :flickr_url, :picture_alt_text, :section,
+  :meta_description, :user_id#, :categories, :citations
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
 
   def to_param
     "#{id}-#{title.parameterize}"

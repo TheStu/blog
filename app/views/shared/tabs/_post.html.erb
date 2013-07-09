@@ -1,7 +1,9 @@
-<li>
+<li class="standard-li">
   <a href="<%= post_path(post) %>">
     <%= image_tag post.pic_thumbnail_url, alt: post.picture_alt_text, title: post.picture_alt_text, class: 'tab-post-pic' %>
     <%= content_tag :span, truncate(post.title, length: 35, omission: '..'), class: 'tab-post-title' %>
-    <%= content_tag :i, "#{post.all_time_view_count} views since posting", class: 'tab-post-view-count' %>
+    <% if post.created_at > Time.now - 1.year %>
+      <%= content_tag :i, pretty_date(post.created_at), class: 'tab-post-date' %>
+    <% end %>
   </a>
 </li>

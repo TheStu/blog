@@ -11,11 +11,13 @@ module GetFlickr
     thumbnail = get_thumbnail(sizes)
     square = get_large_square(sizes)
     large = get_large(sizes)
+    medium = get_medium(sizes)
 
-    unless self.pic_thumbnail_url == thumbnail && self.pic_large_url == large && self.pic_large_square_url == square
+    unless self.pic_thumbnail_url == thumbnail && self.pic_large_url == large && self.pic_large_square_url == square  && self.pic_medium_url == medium
       self.update_attributes(pic_thumbnail_url: thumbnail,
                              pic_large_url: large,
-                             pic_large_square_url: square)
+                             pic_large_square_url: square,
+                             pic_medium_url: medium)
     end
   end
 
@@ -46,6 +48,18 @@ module GetFlickr
       return sizes.find {|s| s.label == 'Medium 800' }.source
     elsif sizes.find {|s| s.label == 'Large' }.present?
       return sizes.find {|s| s.label == 'Large' }.source
+    else
+      ''
+    end
+  end
+
+  def get_medium(sizes)
+    if sizes.find {|s| s.label == 'Small 320' }.present?
+      return sizes.find {|s| s.label == 'Small 320' }.source
+    elsif sizes.find {|s| s.label == 'Medium' }.present?
+      return sizes.find {|s| s.label == 'Medium' }.source
+    elsif sizes.find {|s| s.label == 'Small' }.present?
+      return sizes.find {|s| s.label == 'Small' }.source
     else
       ''
     end
