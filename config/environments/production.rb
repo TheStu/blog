@@ -78,7 +78,7 @@ Blog::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { :host => 'stuwashere.com' }
+  config.action_mailer.default_url_options = { :host => 'backpackingtalk.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
@@ -94,8 +94,13 @@ Blog::Application.configure do
 
   GA.tracker = "UA-838194-23"
 
-  config.middleware.use ExceptionNotifier,
-    sender_address:       %{"Error Notifier" <admin@XXX.com>},
-    exception_recipients: %w{stuwashere@gmail.com},
-    ignore_crawlers:      %w{Googlebot bingbot}
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix:          "[BT ERROR] ",
+    :sender_address:        %{"Error Notifier" <admin@backpackingtalk.com>},
+    :exception_recipients:  %w{stuwashere@gmail.com},
+    ignore_crawlers:        %w{Googlebot bingbot}
+  }
+
+
 end

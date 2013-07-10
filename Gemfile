@@ -43,7 +43,7 @@ gem "thin", "~> 1.5.1"
 gem "foreman", "~> 0.63.0"
 gem "pg", "~> 0.15.1"
 gem "google-analytics-rails", "~> 0.0.4"
-gem "exception_notification", "~> 4.0.0.rc1"
+gem "exception_notification", "~> 4.0.0"
 gem 'devise', '3.0.0.rc'
 gem "cancan", "~> 1.6.10"
 gem "rails_admin", "~> 0.5.0"
@@ -54,6 +54,7 @@ gem "flickraw", "~> 0.9.6"
 gem "nokogiri", "~> 1.6.0"
 gem "fancybox2-rails", "~> 0.2.4"
 gem "tire", "~> 0.6.0"
+gem "heroku", "~> 2.39.4"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
