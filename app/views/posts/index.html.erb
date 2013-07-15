@@ -1,31 +1,7 @@
-<h1>Listing posts</h1>
+<% provide(:title, "Search Reults for '#{params[:q].to_s}'") %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h1>Search Results for '<%= params[:q] %>'</h1>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user_id %></td>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'shared/group', collection: @groups %>
 
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<%= will_paginate @groups, renderer: BootstrapPagination::Rails %>

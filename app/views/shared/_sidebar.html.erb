@@ -27,20 +27,31 @@
     </div>
   </div>
   <h2 class="h2-margin-left">Daily Gear Deals</h2>
-    <ul class="dotd-list">
-      <% Dotd.find_each do |deal| %>
-        <li>
-          <a href="<%= deal.buy_url %>", target="_blank", rel="nofollow">
-            <%= image_tag deal.small_image_url, alt: dotd_title(deal), title: dotd_title(deal), class: 'product-pic' %>
-            <%= image_tag "#{deal.merchant_name.gsub('.com','').downcase}.png", class: 'favicon' %>
-            <%= content_tag :span, truncate(dotd_title(deal), length: 40, omission: '..'), class: 'deal-title' %>
-            <%= content_tag :span, "$#{deal.sale_price}", class: 'deal-sale-price' %>
-            <div class="deal-meta">
-              <%= content_tag :i, "Reg. $#{deal.retail_price}", class: 'deal-retail-price' %>
-              <%= content_tag :span, "#{deal.percent_off}% off!", class: 'deal-percent-off' %>
-            </div>
-          </a>
-        </li>
-      <% end %>
-    </ul>
+  <ul class="dotd-list">
+    <% Dotd.find_each do |deal| %>
+      <li>
+        <a href="<%= deal.buy_url %>", target="_blank", rel="nofollow">
+          <%= image_tag deal.small_image_url, alt: dotd_title(deal), title: dotd_title(deal), class: 'product-pic' %>
+          <%= image_tag "#{deal.merchant_name.gsub('.com','').downcase}.png", class: 'favicon' %>
+          <%= content_tag :span, truncate(dotd_title(deal), length: 40, omission: '..'), class: 'deal-title' %>
+          <%= content_tag :span, "$#{deal.sale_price}", class: 'deal-sale-price' %>
+          <div class="deal-meta">
+            <%= content_tag :i, "Reg. $#{deal.retail_price}", class: 'deal-retail-price' %>
+            <%= content_tag :span, "#{deal.percent_off}% off!", class: 'deal-percent-off' %>
+          </div>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <h2 class="h2-margin-left">Post Categories</h2>
+  <ul class="post-tags">
+    <% Category.order('tagged_posts DESC').each do |category| %>
+      <li>
+        <a href="<%= category_path(category) %>" class="<%= cycle('odd', 'even') %>">
+          <%= category.name %> (<%= category.tagged_posts %>)
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
 </div>

@@ -12,10 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require fancybox
 //= require bootstrap-transition.js
 //= require bootstrap-tab.js
 //= require bootstrap-alert.js
 //= require bootstrap-dropdown.js
+//= require ckeditor/init
+//= require jquery.ui.effect-shake
 //= require_tree .
+//= require turbolinks

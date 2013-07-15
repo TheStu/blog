@@ -51,7 +51,7 @@
       <%= f.select :section, [['Backpacking', 'backpacking'],
                               ['Gear', 'gear'],
                               ['Food', 'food'],
-                              ['Photography', 'photography']] %>
+                              ['Photos', 'photos']] %>
     </div>
     <div class="field">
       <%= f.label :meta_description %><br>
@@ -63,3 +63,5 @@
     </div>
   </div>
 <% end %>
+
+<script>CKEDITOR.replace('post[content]');</script>

@@ -49,12 +49,14 @@ gem "cancan", "~> 1.6.10"
 gem "rails_admin", "~> 0.5.0"
 gem "will_paginate", "~> 3.0.4"
 gem "will_paginate-bootstrap", "~> 0.2.3"
-# gem "ckeditor_rails", "~> 4.1.1"
+gem "ckeditor", git: 'git://github.com/mjhoy/ckeditor.git', branch: 'rails-4-compatibility'
 gem "flickraw", "~> 0.9.6"
 gem "nokogiri", "~> 1.6.0"
 gem "fancybox2-rails", "~> 0.2.4"
 gem "tire", "~> 0.6.0"
 gem "heroku", "~> 2.39.4"
+gem "jquery-ui-rails", "~> 4.0.3"
+gem "jquery-turbolinks", "~> 1.0.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

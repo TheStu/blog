@@ -13,7 +13,23 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
-ready = function() {
+$( document ).ready(function() {
+
+  //////////////////// NEWSLETTER SHAKE
+
+  var reached_bottom = false;
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() + $(window).height() >=
+      $('.post-content').offset().top + $('.post-content').height() + 100 && reached_bottom == false ) {
+      $( ".newsletter" ).effect( "shake", {distance: 5}, 700 );
+
+    reached_bottom = true;
+    }
+  });
+
+  /////////////////// NEWSLETTER POPDOWN
+
   var value = 0;
   $(".newsletter-click").click(function() {
     var target = $(this).parent().children(".newsletter-expand");
@@ -34,8 +50,87 @@ ready = function() {
       down = false;
     }
   });
-  $("a.fancybox").fancybox();
-};
 
-$(document).on('page:load', ready);
-$(document).ready(ready);
+  //////////////// SOCIAL BAR STUFF
+
+  var popped = false;
+  var social_value = 0;
+
+  var barPosition = function(){
+    var $bar = jQuery(".social-bar");
+    offset = jQuery('.main-content').offset(); // 173
+    $bar.css({"left":(offset.left - $bar.outerWidth() - 11),"display":"block"});
+  };
+
+  var hiddenBar = function(){
+    $('.social-arrow').css("display","block");
+    if (popped == false) {
+      $(".social-bar").css("display","none");
+    }
+    else {
+      $(".social-bar").css({"left":"-4px","display":"block"});
+    }
+  };
+
+  if ($(window).width() > 1100) {
+    $('.social-arrow').css("display","none");
+    barPosition();
+  }
+  else {
+    hiddenBar();
+  }
+
+  $(window).resize(function(){
+    if ($(window).width() > 1100) {
+      $('.social-arrow').css("display","none");
+      barPosition();
+    }
+    else {
+      hiddenBar();
+    }
+  });
+
+  $('.social-arrow').click(function() {
+    social_value += 180;
+    if (popped == false) {
+      popped = true;
+      $(".social-bar").css({"left":"-4px","display":"block"});
+      $('.social-arrow-img').rotate({animateTo:social_value});
+    }
+    else {
+      popped = false;
+      $(".social-bar").css({"left":"-4px","display":"none"});
+      $('.social-arrow-img').rotate({animateTo:social_value});
+    }
+  });
+
+  //////////////////// FANCYBOX
+
+  $("a.fancybox").fancybox();
+
+  //////////////////// ASYNC SOCIAL BUTTONS
+
+  (function(doc, script) {
+    var js,
+        fjs = doc.getElementsByTagName(script)[0],
+        frag = doc.createDocumentFragment(),
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            frag.appendChild( js );
+        };
+
+      // Google Analytics
+      // add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+      // Google+ button
+      add('http://apis.google.com/js/plusone.js');
+      // Facebook SDK
+      // add('http://connect.facebook.net/en_US/all.js#xfbml=1', 'facebook-jssdk');
+      // Twitter SDK
+      add('//platform.twitter.com/widgets.js');
+
+      fjs.parentNode.insertBefore(frag, fjs);
+  }(document, 'script'));
+});

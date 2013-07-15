@@ -8,7 +8,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.search(params[:q]).map(&:id)
+    @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 2)
 
     respond_to do |format|
       format.html
