@@ -22,6 +22,7 @@
       <%= f.label :content %><br>
       <%= f.text_area :content %>
     </div>
+
     <div class="field">
       <h3>Categories</h3>
       <%= hidden_field_tag "post[category_ids][]", nil %>
@@ -30,6 +31,7 @@
         <%= label_tag dom_id(category), category.name %><br>
       <% end %>
     </div>
+
     <h3>Picture</h3>
     <div class="field">
       <%= f.label :flickr_url %><br>
@@ -45,6 +47,17 @@
       <% end %>
       <p class="add-citation-btn"><%= link_to_add_fields "Add Citation", f, :citations %></p>
     </div>
+
+    <h3>Review</h3>
+    <div class="field">
+      <%= f.check_box :is_a_review %>
+      <%= f.label :is_a_review %>
+    </div>
+    <div class="field">
+      <%= f.label :stars, "Review Stars" %><br>
+      <%= f.select :stars, options_for_select([1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], selected: @post.stars.to_s), { include_blank: true } %>
+    </div>
+
     <h3>Post Meta</h3>
     <div class="field">
       <%= f.label :section %><br>
@@ -58,6 +71,7 @@
       <%= f.text_field :meta_description %>
     </div>
     <br>
+
     <div class="actions">
       <%= f.submit 'Create Post', class: 'my-btn' %>
     </div>

@@ -87,7 +87,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :pic_thumbnail_url, :pic_large_url, :pic_large_square_url, :pic_medium_url, :flickr_url, :all_time_view_count, :monthly_view_count, :picture_alt_text, :section, :meta_description, :pictures_attributes, citations_attributes: [:id, :url, :text], category_ids: [])
+      params.require(:post).permit(:title, :content, :pic_thumbnail_url, :pic_large_url, :pic_large_square_url, :pic_medium_url, :flickr_url, :all_time_view_count, :monthly_view_count, :picture_alt_text, :section, :meta_description, :stars, :is_a_review, :last_upated_products_for_review, :pictures_attributes, citations_attributes: [:id, :url, :text], category_ids: [])
     end
 
     def impression_count(post)

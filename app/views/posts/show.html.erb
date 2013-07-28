@@ -24,14 +24,14 @@
   </div>
 
   <h1 itemprop="headline"><%= @post.title %></h1>
-  <meta itemprop="image" content="<%= @post.pic_large_url %>">
-  <meta itemprop="thumbnailUrl" content="<%= @post.pic_thumbnail_url %>">
-  <meta itemprop="author" content="Stuart Morris">
+  <meta itemprop="image" content="<%= @post.pic_large_url %>" id="itemPropImage">
+  <meta itemprop="thumbnailUrl" content="<%= @post.pic_thumbnail_url %>" id="itemPropThumb">
+  <meta itemprop="author" content="Stuart Morris" id="itemPropAuthor">
 
   <div class="meta-well">
     <span class="post-meta-unit">
       <i class="icon-calendar"></i>
-      <time itemprop="datePublished" datetime="<%= @post.created_at %>" >
+      <time itemprop="datePublished" datetime="<%= @post.created_at %>" id="itemPropDate">
         <%= content_tag :span, pretty_date(@post.created_at), class: 'post-date' %>
       </time>
     </span>
@@ -79,8 +79,41 @@
     </div>
   </div>
 
-  <div class="post-content" itemprop="text">
-    <%= simple_format @post.content %>
+  <% if @post.stars.present? %>
+    <div class="post-review-stars" itemprop="review" itemscope itemtype="http://schema.org/Review">
+      <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+
+        <meta itemprop="worstRating" content = "1">
+        <meta itemprop="ratingValue" content = "<%= @post.stars %>">
+        <meta itemprop="bestRating" content = "5">
+
+        <% @post.stars.to_i.times do %>
+          <%= image_tag "star_full.jpg" %>
+        <% end %>
+
+        <% if @post.stars.to_i + 0.5 == @post.stars %>
+          <%= image_tag "star_half.jpg" %>
+        <% end %>
+
+        <% (5 - (@post.stars + 0.5).to_i).times do # + 0.5 to account for the possible half star %>
+          <%= image_tag "star_empty.jpg" %>
+        <% end %>
+      </div>
+
+      <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/Thing">
+        <meta itemprop="name" content = "<%= @post.title.gsub(' Review', '') %>">
+      </div>
+      <meta itemprop="reviewBody" itemref="itemPropText">
+      <meta itemprop="image" itemref="itemPropImage">
+      <meta itemprop="thumbnailUrl" itemref="itemPropThumb">
+      <meta itemprop="author" itemref="itemPropAuthor">
+      <time itemprop="datePublished" itemref="itemPropDate"></time>
+
+    </div>
+  <% end %>
+
+  <div class="post-content" itemprop="text" id="itemPropText">
+    <%= @post.content_with_review_ads.html_safe %>
   </div>
 
   <div class="bottom-of-post">

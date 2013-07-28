@@ -559,9 +559,9 @@ body {
   background-color: $header-hover;
   .logo {
     height: 90px;
-    padding: 10px 0 70px 0;
+    padding: 0 0 80px 0;
     h1 {
-      margin-top: 25px;
+      margin-top: 0;
     }
   }
   .logo-ad a img {
@@ -620,10 +620,45 @@ body {
   }
 }
 
+.post-review-stars {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .post-content {
   font-size: 15px;
   line-height: 22px;
   margin-bottom: 20px;
+  .review-ad {
+    text-align: center;
+    padding: 10px 0 20px 0;
+    a {
+      padding: 10px 20px;
+      @include border-radius(5px);
+      background-color: #dedede;
+      &:hover {
+        background-color: #cacaca;
+        @include transition(all .5s linear);
+      }
+      .review-ad-name {
+        font-size: 15px;
+        font-weight: bold;
+        color: #333;
+        padding: 0 5px;
+      }
+      .review-ad-merch {
+        font-size: 13px;
+        color: #666;
+      }
+      .review-ad-price {
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .review-ad-sale {
+        color: red;
+      }
+    }
+  }
 }
 
 .bottom-of-post {

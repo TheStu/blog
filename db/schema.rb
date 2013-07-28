@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130710141344) do
+ActiveRecord::Schema.define(version: 20130727213818) do
 
   create_table "ads", force: true do |t|
     t.string   "ad_content"
@@ -84,17 +84,34 @@ ActiveRecord::Schema.define(version: 20130710141344) do
     t.string   "pic_thumbnail_url"
     t.string   "pic_large_url"
     t.string   "flickr_url"
-    t.integer  "all_time_view_count",  default: 0
-    t.integer  "monthly_view_count",   default: 0
+    t.integer  "all_time_view_count",              default: 0
+    t.integer  "monthly_view_count",               default: 0
     t.string   "picture_alt_text"
     t.string   "pic_large_square_url"
     t.string   "meta_description"
     t.string   "section"
     t.string   "pic_medium_url"
+    t.decimal  "stars"
+    t.datetime "last_updated_products_for_review"
+    t.boolean  "is_a_review",                      default: false
   end
 
   add_index "posts", ["all_time_view_count", "monthly_view_count"], name: "index_posts_on_all_time_view_count_and_monthly_view_count", using: :btree
   add_index "posts", ["section"], name: "index_posts_on_section", using: :btree
+
+  create_table "products", force: true do |t|
+    t.integer  "post_id"
+    t.string   "merchant_name"
+    t.string   "product_name"
+    t.string   "brand"
+    t.string   "retail_price"
+    t.string   "sale_price"
+    t.string   "buy_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["post_id"], name: "index_products_on_post_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"

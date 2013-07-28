@@ -31,13 +31,4 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
-
-  def dotd_title(dotd)
-    if dotd.product_name.downcase.include?(dotd.brand.downcase)
-      name = dotd.product_name
-    else
-      name = dotd.product_name.downcase.gsub(dotd.brand.downcase, '')
-      name = dotd.brand + ' ' + name.titleize
-    end
-  end
 end

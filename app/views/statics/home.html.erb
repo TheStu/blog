@@ -6,13 +6,17 @@
   <h2><%= link_to post.title, post_path(post) %></h2>
 
   <div class="meta-well">
-    <i class="icon-calendar"></i>
-    <%= content_tag :span, pretty_date(post.created_at), class: 'post-date' %>
+    <span class="post-meta-unit">
+      <i class="icon-calendar"></i>
+      <%= content_tag :span, pretty_date(post.created_at), class: 'post-date' %>
+    </span>
 
-    <i class="icon-tags"></i>
-    <%= post.categories.map { |c|
-            "<a href=\"#{category_path(c)}\">#{c.name}</a>"
-           }.join(', ').html_safe %>
+    <span class="post-meta-unit">
+      <i class="icon-tags"></i>
+      <%= post.categories.map { |c|
+              "<a href=\"#{category_path(c)}\">#{c.name}</a>"
+             }.join(', ').html_safe %>
+    </span>
   </div>
 
   <div class="post-header-pic">
@@ -20,7 +24,7 @@
   </div>
 
   <div class="post-content">
-    <%= simple_format(truncate(post.content, length: 500, omission: ' ...')) %>
+    <%= truncate_html(post.content.gsub('<p>[[ad#1]]</p>', ''), length: 500, omission: ' ...') %>
     <br>
     <%= link_to "Continue Reading <i class=\"icon-arrow-right icon-white\"></i>".html_safe, post_path(post), class: 'read-more-link my-btn' %>
   </div>
