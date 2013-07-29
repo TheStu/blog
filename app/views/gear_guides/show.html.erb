@@ -1,0 +1,75 @@
+<% provide(:title, @gear_guide.title) %>
+<% provide(:desc, @gear_guide.meta_description) %>
+
+<div itemscope itemtype="http://schema.org/Article">
+
+  <div class="social-arrow">
+    <%= image_tag("share.png", alt: 'show share buttons', title: 'show share buttons', class: 'social-arrow-img')  %>
+  </div>
+
+  <div class="social-bar">
+    <div class="social-button">
+      <div id="fb-root"></div>
+      <div class="fb-like" data-href="<%= gear_guide_url(@gear_guide) %>" data-send="false" data-layout="box_count" data-width="55" data-show-faces="false"></div>
+    </div>
+    <div class="social-button">
+      <su:badge layout="5" location="<%= gear_guide_url(@gear_guide) %>"></su:badge>
+    </div>
+    <div class="social-button">
+      <div class="g-plusone" data-size="tall" data-href="<%= gear_guide_url(@gear_guide) %>"></div>
+    </div>
+    <div class="social-button">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= gear_guide_url(@gear_guide) %>" data-via="stuwashere" data-count="vertical">Tweet</a>
+    </div>
+  </div>
+
+  <h1 class="gear-guide-h1" itemprop="headline"><%= @gear_guide.title %></h1>
+  <meta itemprop="author" content="Stuart Morris">
+  <meta itemprop="wordCount" content="<%= strip_tags(@gear_guide.content).scan(/[\w-]+/).size %>">
+
+  <div class="meta-well">
+    <span class="post-meta-unit">
+      <span class="gear-guide-published">
+        <i class="icon-calendar"></i>
+        <strong>Published: </strong>
+        <time itemprop="datePublished" datetime="<%= @gear_guide.created_at %>">
+          <%= content_tag :span, pretty_date(@gear_guide.created_at) %>
+        </time>
+      </span>
+    </span>
+
+    <span class="post-meta-unit">
+      <span class="gear-guide-updated">
+        <i class="icon-edit"></i>
+        <strong>Last Updated: </strong>
+        <time itemprop="dateModified" datetime="<%= @gear_guide.updated_at %>">
+          <%= content_tag :span, pretty_date(@gear_guide.updated_at) %>
+        </time>
+      </span>
+    </span>
+
+    <% if can? :edit, @gear_guide %>
+
+      <span class="post-meta-unit">
+        <i class="icon-edit"></i>
+        <%= link_to 'Edit', edit_gear_guide_path(@gear_guide) %>
+      </span>
+
+      <span class="post-meta-unit">
+        <i class="icon-remove"></i>
+        <%= link_to 'Delete', @gear_guide, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </span>
+
+    <% end %>
+
+  </div>
+
+  <div class="gear-guide-content"  itemprop="articleBody">
+    <%= @gear_guide.content.html_safe %>
+  </div>
+
+  <h2>Popular Gear Guides</h2>
+
+
+
+</div>

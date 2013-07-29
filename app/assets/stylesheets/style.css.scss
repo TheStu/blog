@@ -9,6 +9,7 @@ $header-hover: #3f3c31;
 $light-brown: #f4ebca;
 $button_blue: #2583db;
 $button_hover: #1a67ae;
+$button_green: #25872B;
 $light_green: #30ab39;
 $sidebar_brown: #f8f1d8;
 $newsletter_yellow: #f8f508;
@@ -423,7 +424,7 @@ body {
       width: 131px;
     }
     li a {
-      background-color: #25872B;
+      background-color: $button_green;
       font-size: 12px;
       color: white;
       text-align: center;
@@ -627,7 +628,7 @@ body {
 
 .post-content {
   font-size: 15px;
-  line-height: 22px;
+  line-height: 24px;
   margin-bottom: 20px;
   .review-ad {
     text-align: center;
@@ -773,24 +774,38 @@ body {
 
 ///////////////////////////////////////////
 //                                       //
-//                Post#Index             //
+//           GearGuide#Form              //
 //                                       //
 ///////////////////////////////////////////
 
-///////////////////////////////////////////
-//                                       //
-//              Category#Show            //
-//                                       //
-///////////////////////////////////////////
+#gear_guide_title, #gear_guide_meta_description {
+  width: 520px;
+}
 
 ///////////////////////////////////////////
 //                                       //
-//              Category#Index           //
+//           GearGuide#Show              //
 //                                       //
 ///////////////////////////////////////////
 
-///////////////////////////////////////////
-//                                       //
-//                  Search               //
-//                                       //
-///////////////////////////////////////////
+.gear-guide-h1:before {
+  content: 'Gear Guide :: ';
+  color: $button_green;
+}
+
+.gear-guide-content {
+  font-size: 15px;
+  line-height: 24px;
+  margin-bottom: 20px;
+  img {
+    border: 3px solid #999;
+  }
+  .gear-guide-img {
+    margin: 0 0 10px 10px;
+  }
+  a[name] {
+    padding-top: 80px;
+    margin-top: -80px;
+    display: inline-block; /* required for webkit browsers */
+  }
+}

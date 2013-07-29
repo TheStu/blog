@@ -1,5 +1,6 @@
 Blog::Application.routes.draw do
 
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -11,6 +12,7 @@ Blog::Application.routes.draw do
   get "/contact", to: 'statics#contact'
   get "/about", to: 'statics#about'
 
+  resources :gear_guides, path: 'gear-guides', except: :index
   resources :posts do
     collection do
       get 'section/:section', to: 'posts#section', as: 'section', constraints: proc { |req| ['backpacking', 'gear', 'food', 'photography'].include?(req.params[:section]) }

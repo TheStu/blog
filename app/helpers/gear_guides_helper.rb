@@ -1,0 +1,2 @@
+module GearGuidesHelper
+end

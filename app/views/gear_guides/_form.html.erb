@@ -1,0 +1,44 @@
+<%= form_for(@gear_guide) do |f| %>
+  <% if @gear_guide.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gear_guide.errors.count, "error") %> prohibited this gear_guide from being saved:</h2>
+
+      <ul>
+      <% @gear_guide.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well">
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+    </div>
+    <br>
+    <div class="well">
+      <ul>
+        <li>Main image is 300px wide / gets 'gear-guide-img' class / right aligned</li>
+        <li>Image needs to be uploaded to app assets</li>
+        <li>All anchors need the 'anchor' class</li>
+        <li>Jump To box gets wrapped in a div w/ class 'well'</li>
+        <li>'Jump To' gets p > strong</li>
+      </ul>
+    </div>
+    <div class="field">
+      <%= f.label :meta_description %><br>
+      <%= f.text_field :meta_description %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Create Gear Guide', class: 'my-btn' %>
+    </div>
+  </div>
+<% end %>
+
+<script>CKEDITOR.replace('gear_guide[content]');</script>

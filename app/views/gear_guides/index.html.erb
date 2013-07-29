@@ -1,0 +1,33 @@
+<h1>Listing gear_guides</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Meta description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gear_guides.each do |gear_guide| %>
+      <tr>
+        <td><%= gear_guide.user_id %></td>
+        <td><%= gear_guide.title %></td>
+        <td><%= gear_guide.content %></td>
+        <td><%= gear_guide.meta_description %></td>
+        <td><%= link_to 'Show', gear_guide %></td>
+        <td><%= link_to 'Edit', edit_gear_guide_path(gear_guide) %></td>
+        <td><%= link_to 'Destroy', gear_guide, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gear guide', new_gear_guide_path %>

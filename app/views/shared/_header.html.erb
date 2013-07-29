@@ -32,11 +32,15 @@
           <a class="dropdown-toggle"
              data-toggle="dropdown"
              href="#">
-              <%= image_tag "awesomeness.png", alt: 'tags' %> Awesomeness
+              <%= image_tag "awesomeness.png", alt: 'tags' %> Gear Guides
               <b class="caret"></b>
             </a>
           <ul class="dropdown-menu">
-
+            <% GearGuide.find_each do |guide| %>
+              <li>
+                <%= link_to guide.title, gear_guide_path(guide) %>
+              </li>
+            <% end %>
           </ul>
         </li>
 
@@ -75,6 +79,7 @@
               <li class="divider"></li>
               <li><%= link_to "New Category", new_category_path %></li>
               <li><%= link_to "New Post", new_post_path %></li>
+              <li><%= link_to "New Gear Guide", new_gear_guide_path %></li>
               <li class="divider"></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete" %></li>
               <li><%= link_to "Edit User", edit_user_registration_path %></li>
