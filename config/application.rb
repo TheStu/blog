@@ -23,7 +23,7 @@ module Blog
     # config.i18n.default_locale = :de
     config.assets.initialize_on_precompile = false
 
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    # config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
     Tire.configure do
       url ENV['SEARCHBOX_URL']
