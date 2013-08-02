@@ -2,7 +2,7 @@ Blog::Application.routes.draw do
 
 
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   get "newsletters/newsletter_sign_up"
 

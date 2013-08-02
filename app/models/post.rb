@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 
   def find_by_categories
     tag_ids = self.categories.collect{|a| a.id}
-    Post.includes(:categorizations).where(["categorizations.category_id IN (?) AND categorizations.post_id != ?", categories, self.id])
+    Post.includes(:categorizations).where(["categorizations.category_id IN (?) AND categorizations.post_id != ?", categories, self.id]).references(:categorizations)
   end
 
   def content_with_review_ads

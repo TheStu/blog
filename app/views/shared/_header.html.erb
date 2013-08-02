@@ -59,7 +59,7 @@
             <li>
               <%= form_tag posts_path, method: 'get', class: 'search-form' do %>
                 <%= text_field_tag :q, params[:q], class: 'search-query', placeholder: 'Search' %>
-              <%= submit_tag "Submit", name: nil, type: :image, src: "/assets/search.png", class: 'search-submit' %>
+              <%= submit_tag "Search", name: nil, class: 'search-submit' %>
               <% end %>
             </li>
           </ul>

@@ -315,7 +315,7 @@ body {
     border-bottom-color: #fff;
   }
   .search-dropdown {
-    width: 279px;
+    width: 318px;
     .search-form {
       margin: 0px;
       input {
@@ -328,8 +328,11 @@ body {
       }
       .search-submit {
         background-color: $button_blue;
+        color: #fff;
         padding: 4px;
         border-left: 3px solid #000;
+        height: 38px;
+        width: 80px;
         &:hover {
           background-color: $button_hover;
           @include transition(all .5s linear);
