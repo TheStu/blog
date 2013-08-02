@@ -78,7 +78,7 @@
   </div>
 
   <div class="gear-guide-content"  itemprop="articleBody">
-    <%= @gear_guide.content.html_safe %>
+    <%= fix_image_pathway(@gear_guide.content).html_safe %>
   </div>
 
   <h2>Popular Gear Guides</h2>

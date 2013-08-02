@@ -31,4 +31,14 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
+
+  def fix_image_pathway(text) #adds the random hash into the image pathway for heroku
+    if Rails.env.production?
+      text.scan(/src="([^.]+.jpg)"/).each do |src|
+        src.first.match(/\/([^.\/]+.jpg)/)
+        text = text.gsub(src.first, path_to_image($1))
+      end
+      return text
+    end
+  end
 end
