@@ -6,9 +6,9 @@ task :reload_dotd_data => :environment do
   require 'nokogiri'
   require 'open-uri'
 
-  datafeed_urls = ['http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=41369&merchant_id=10060&dotd_id=6', #Backcountry
-                   'http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=41369&merchant_id=10248&dotd_id=16', #REI
-                   'http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=41369&merchant_id=11501&dotd_id=293'] #GoLite
+  datafeed_urls = ['http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=145073&merchant_id=10060&dotd_id=6', #Backcountry
+                   'http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=145073&merchant_id=10248&dotd_id=16', #REI
+                   'http://www.avantlink.com/api.php?affiliate_id=31645&module=DotdFeed&output=xml&website_id=145073&merchant_id=11501&dotd_id=293'] #GoLite
 
   Dotd.destroy_all
 

@@ -9,6 +9,7 @@
   <%= analytics_init if Rails.env.production? && !user_signed_in? %>
   <%= auto_discovery_link_tag(:atom, posts_url(format: 'atom')) %>
   <link href='http://fonts.googleapis.com/css?family=Exo:900' rel='stylesheet' type='text/css'>
+  <%= yield :head %>
 
   <script type="text/javascript">
     var bindFacebookEvents, fb_events_bound, fb_root, initializeFacebookSDK, loadFacebookSDK, restoreFacebookRoot, saveFacebookRoot;

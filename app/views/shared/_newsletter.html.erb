@@ -6,7 +6,8 @@
   <div class="newsletter-expand newsletter-content">
     <%= form_tag newsletters_newsletter_sign_up_path, method: 'get', class: 'newsletter-form' do %>
       <div class="newsletter-inputs">
-        <%= text_field_tag :name, params[:name], placeholder: 'Name' %>
+        <%= text_field_tag :first_name, params[:first_name], placeholder: 'First Name' %>
+        <%= text_field_tag :last_name, params[:last_name], placeholder: 'Last Name' %>
         <%= text_field_tag :email_address, params[:email_address], placeholder: 'Email Address' %>
       </div>
       <%= submit_tag "Subscribe", class: 'newsletter-submit' %>

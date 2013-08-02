@@ -1,5 +1,18 @@
 <% provide(:title, @gear_guide.title) %>
 <% provide(:desc, @gear_guide.meta_description) %>
+<% content_for :head do %>
+  <meta property="og:title" content="<%= @gear_guide.title %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="<%= @gear_guide.meta_description %>" />
+  <meta property="og:site_name" content="Backpacking Talk" />
+  <meta property="og:url" content="<%= gear_guide_url(@gear_guide) %>" />
+  <meta property="og:image" content="/assets/gear-guide/<%= @gear_guide.title.parameterize %>.jpg" />
+
+  <meta property="article:published_time" content="<%= @gear_guide.created_at %>" />
+  <meta property="article:modified_time" content="<%= @gear_guide.updated_at %>" />
+  <meta property="article:author" content="Stuart Morris" />
+  <meta property="article:section" content="Outdoors" />
+<% end %>
 
 <div itemscope itemtype="http://schema.org/Article">
 

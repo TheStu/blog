@@ -9,7 +9,7 @@ module UpdateReviewProducts
 
       found = []
 
-      url = "http://www.avantlink.com/api.php?affiliate_id=31645&module=ProductSearch&output=xml&website_id=41369&search_term=#{CGI.escape(title.gsub(' Review', ''))}&search_advanced_syntax=0&search_results_fields=Merchant+Name%7CProduct+Name%7CBrand+Name%7CRetail+Price%7CSale+Price%7CBuy+URL%7CMerchant+Id&search_results_merchant_limit=1&search_results_options=precise"
+      url = "http://www.avantlink.com/api.php?affiliate_id=31645&module=ProductSearch&output=xml&website_id=145073&search_term=#{CGI.escape(title.gsub(' Review', ''))}&search_advanced_syntax=0&search_results_fields=Merchant+Name%7CProduct+Name%7CBrand+Name%7CRetail+Price%7CSale+Price%7CBuy+URL%7CMerchant+Id&search_results_merchant_limit=1&search_results_options=precise"
       results = Nokogiri::XML(open(url))
 
       found = preferred_first(results)

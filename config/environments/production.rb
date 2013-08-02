@@ -92,12 +92,12 @@ Blog::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 
-  GA.tracker = "UA-838194-23"
+  GA.tracker = "UA-838194-24"
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {
     email_prefix:          "[BT ERROR] ",
-    sender_address:        %{"Error Notifier" <admin@backpackingtalk.com>},
+    sender_address:        %{"Error Notifier" <stuart@backpackingtalk.com>},
     exception_recipients:  %w{stuwashere@gmail.com},
     ignore_crawlers:        %w{Googlebot bingbot}
   }

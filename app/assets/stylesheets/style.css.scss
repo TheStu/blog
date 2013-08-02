@@ -171,6 +171,10 @@ input[type="checkbox"] {
   }
 }
 
+.alert {
+  margin-bottom: 1px;
+}
+
 ///////////////////////////////////////////
 //                                       //
 //                 Basics                //
@@ -378,8 +382,11 @@ body {
       }
       .newsletter-inputs {
         display: inline-block;
-        #email_address, #name {
-          width: 220px;
+        #email_address {
+          width: 200px;
+        }
+        #first_name, #last_name {
+          width: 110px;
         }
       }
       .newsletter-submit {
@@ -741,6 +748,10 @@ body {
   display: block;
 }
 
+.comments {
+  margin: 0 20px;
+}
+
 ///////////////////////////////////////////
 //                                       //
 //                Post#Form              //
@@ -798,7 +809,21 @@ body {
   line-height: 24px;
   margin-bottom: 20px;
   img {
-    border: 3px solid #999;
+    border: 3px solid #e3e3e3;
+    padding: 4px;
+  }
+  ul, ol {
+    li {
+      padding: 2px 0;
+    }
+  }
+  .no-border {
+    border: 0;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .gear-guide-img {
     margin: 0 0 10px 10px;
