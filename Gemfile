@@ -61,6 +61,8 @@ gem "jquery-turbolinks", "~> 1.0.0"
 gem "truncate_html", "~> 0.9.2"
 gem "gibbon", "~> 1.0.0"
 
+gem "taps", "~> 0.3.24"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
