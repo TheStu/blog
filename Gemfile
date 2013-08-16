@@ -49,7 +49,7 @@ gem "cancan", "~> 1.6.10"
 gem "rails_admin", "~> 0.5.0"
 gem "will_paginate", "~> 3.0.4"
 gem "will_paginate-bootstrap", "~> 0.2.3"
-gem "ckeditor", git: 'git://github.com/mjhoy/ckeditor.git', branch: 'rails-4-compatibility'
+gem "ckeditor", git: 'git://github.com/galetahub/ckeditor.git'
 gem "paperclip", "~> 3.5.1"
 gem "flickraw", "~> 0.9.6"
 gem "nokogiri", "~> 1.6.0"

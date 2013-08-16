@@ -1,9 +1,8 @@
 GIT
-  remote: git://github.com/mjhoy/ckeditor.git
-  revision: fca24021e13d355f74c9538f9db27dc58687ce65
-  branch: rails-4-compatibility
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: 95c05eb23b81298dfb204da72ce04a8141118ce5
   specs:
-    ckeditor (4.0.4)
+    ckeditor (4.0.5)
       mime-types
       orm_adapter
 
