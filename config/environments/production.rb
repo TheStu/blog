@@ -97,8 +97,8 @@ Blog::Application.configure do
   config.middleware.use ExceptionNotification::Rack,
   :email => {
     email_prefix:          "[BT ERROR] ",
-    sender_address:        %{"Error Notifier" <stu@backpackingtalk.com>},
-    exception_recipients:  %w{stuwashere@gmail.com},
+    sender_address:        %{"Error Notifier" <noreply@backpackingtalk.com>},
+    exception_recipients:  %w{stu@backpackingtalk.com},
     ignore_crawlers:        %w{Googlebot bingbot}
   }
 
