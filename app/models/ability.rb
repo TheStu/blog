@@ -8,6 +8,7 @@ class Ability
       can :access, :rails_admin   # grant access to rails_admin
       can :dashboard              # grant access to the dashboard
     else
+      can :read_section, :section
       can :read, :all
     end
   end

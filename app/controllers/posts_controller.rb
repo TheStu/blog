@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  authorize_resource
+  authorize_resource except: :section
 
   include PostCount # for unless bot? method in private
 
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.search(params[:q]).map(&:id)
-    @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 2)
+    @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
 
     respond_to do |format|
       format.html
@@ -75,6 +75,7 @@ class PostsController < ApplicationController
   end
 
   def section
+    authorize! :read_section, :section
     @section = params[:section]
     @groups = Post.order('created_at DESC').where("section = ?", @section).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
   end

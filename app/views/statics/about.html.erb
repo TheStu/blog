@@ -1,5 +1,15 @@
 <% provide(:title, "About Backpacking Talk") %>
 <% provide(:desc, "Find out all about Backpacking Talk, what makes it so awesome, and who the great and benevolent leader of Backpacking Talk is") %>
 
-<h1>Statics#about</h1>
-<p>Find me in app/views/statics/about.html.erb</p>
+<h1>About Backpacking Talk</h1>
+
+<%= image_tag 'stu-about.jpg', alt: 'Stu', class: 'about-pic' %>
+
+<p>Backpacking Talk is all about the great activity that is backpacking. It's about trip reports, the ups and downs of backpacking food, taking great pictures in the outdoors, and just trying to have the best time possible out in nature.</p>
+
+<p>Backpacking Talk is written by me, Stu. I'm from the South West of British Columbia, Canada, where there are plenty of mountains and trails to explore and keep me entertained. That's me in the picture on the right, having fun in the outdoors. I'm in my late 20s, and did a bit of outdoor exploring when I was younger, but have gotten more serious about it lately. I like short trips, as opposed to long and grueling ones, as well as scrambling up peaks and spending time in the alpine. Forests are okay too.</p>
+
+<p>Besides backpacking I'm a big fan of good food, a great book and skiing when there's snow on the ground.</p>
+
+<p>If you want to know more, or just get in touch, head over to the <%= link_to "contact page", new_contact_path %>.</p>
+

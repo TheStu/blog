@@ -31,6 +31,14 @@ h2 a {
   @include transition(all .5s linear);
 }
 
+h3 {
+  font-size: 23.5px;
+}
+
+h4 {
+  font-size: 19.5px;
+}
+
 .h2-margin-left {
   margin-left: 20px;
 }
@@ -355,7 +363,7 @@ body {
   .newsletter-prompt {
     @extend .fonted;
     color: #000;
-    font-size: 22px;
+    font-size: 23px;
     margin-bottom: 0;
     height: 60px;
     line-height: 60px;
@@ -761,7 +769,7 @@ body {
 //                                       //
 ///////////////////////////////////////////
 
-#post_title, #post_flickr_url, #post_picture_alt_text, #post_meta_description, .field-block > .field > input {
+#post_title, #post_flickr_url, #post_picture_alt_text, #post_meta_description, #message_subject, #message_body,  .field-block > .field > input {
   width: 520px;
 }
 
@@ -836,4 +844,21 @@ body {
     margin-top: -80px;
     display: inline-block; /* required for webkit browsers */
   }
+}
+
+///////////////////////////////////////////
+//                                       //
+//           Contact Form                //
+//                                       //
+///////////////////////////////////////////
+
+#message_body {
+  height: 300px;
+}
+
+.about-pic {
+  float: right;
+  border: 3px solid #e3e3e3;
+  padding: 4px;
+  margin: 0 0 10px 10px;
 }

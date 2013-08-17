@@ -1,0 +1,31 @@
+<% provide(:title, "Contact Backpacking Talk") %>
+<% provide(:desc, "Find out how you can contact Backpacking Talk with whatever query or suggestion you're hoping to get in front of us") %>
+
+<h1>Contact Backpacking Talk</h1>
+
+<%= form_for @message, :url => contact_index_path do |f| %>
+  <fieldset class="fields">
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :subject %><br>
+      <%= f.text_field :subject %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body %><br>
+      <%= f.text_area :body %>
+    </div>
+  </fieldset>
+
+  <fieldset class="actions">
+    <%= f.submit "Send", class: 'my-btn' %>
+  </fieldset>
+<% end %>
