@@ -86,7 +86,7 @@ Blog::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'stuwashere.com',
+    :domain               => 'backpackingtalk.com',
     :user_name            => ENV['email_username'],
     :password             => ENV['email_password'],
     :authentication       => 'plain',
@@ -97,7 +97,7 @@ Blog::Application.configure do
   config.middleware.use ExceptionNotification::Rack,
   :email => {
     email_prefix:          "[BT ERROR] ",
-    sender_address:        %{"Error Notifier" <stuart@backpackingtalk.com>},
+    sender_address:        %{"Error Notifier" <stu@backpackingtalk.com>},
     exception_recipients:  %w{stuwashere@gmail.com},
     ignore_crawlers:        %w{Googlebot bingbot}
   }
