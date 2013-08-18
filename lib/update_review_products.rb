@@ -4,22 +4,24 @@ module UpdateReviewProducts
   require 'nokogiri'
 
   def update_review_products
-    if last_updated_products_for_review.blank? or last_updated_products_for_review < Time.now - 1.week
-      Product.where("post_id = ?", id).destroy_all
+    if is_a_review?
+      if last_updated_products_for_review.blank? or last_updated_products_for_review < Time.now - 1.week
+        Product.where("post_id = ?", id).destroy_all
 
-      found = []
+        found = []
 
-      url = "http://www.avantlink.com/api.php?affiliate_id=31645&module=ProductSearch&output=xml&website_id=145073&search_term=#{CGI.escape(title.gsub(' Review', ''))}&search_advanced_syntax=0&search_results_fields=Merchant+Name%7CProduct+Name%7CBrand+Name%7CRetail+Price%7CSale+Price%7CBuy+URL%7CMerchant+Id&search_results_merchant_limit=1&search_results_options=precise"
-      results = Nokogiri::XML(open(url))
+        url = "http://www.avantlink.com/api.php?affiliate_id=31645&module=ProductSearch&output=xml&website_id=145073&search_term=#{CGI.escape(title.gsub(' Review', ''))}&search_advanced_syntax=0&search_results_fields=Merchant+Name%7CProduct+Name%7CBrand+Name%7CRetail+Price%7CSale+Price%7CBuy+URL%7CMerchant+Id&search_results_merchant_limit=1&search_results_options=precise"
+        results = Nokogiri::XML(open(url))
 
-      found = preferred_first(results)
-      results.xpath("/NewDataSet/Table1").first(3 - found.count).each { |a| found << a }
+        found = preferred_first(results)
+        results.xpath("/NewDataSet/Table1").first(3 - found.count).each { |a| found << a }
 
-      save_results(found)
+        save_results(found)
 
-      self.last_updated_products_for_review = Time.now
-      self.save
+        self.last_updated_products_for_review = Time.now
+        self.save
 
+      end
     end
   end
 
