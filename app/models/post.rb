@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   after_destroy :update_category_tagged_count
 
   validates_presence_of :title, :content, :flickr_url, :picture_alt_text, :section,
-  :meta_description, :user_id, :categories, :citations
+  :meta_description, :user_id
 
   include Tire::Model::Search
   include Tire::Model::Callbacks

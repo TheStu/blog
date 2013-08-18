@@ -75,22 +75,26 @@
     <%= link_to image_tag(@post.pic_large_url, alt: @post.picture_alt_text, title: @post.picture_alt_text), @post.pic_large_url, class: 'fancybox' %>
   </div>
 
-  <div class="post-citations">
-    <div class="citation-link">
-      <p>Picture Sources</p>
-      <i class="icon-chevron-down citation-chevron"></i>
+  <% if @post.citations.present? %>
+
+    <div class="post-citations">
+      <div class="citation-link">
+        <p>Picture Sources</p>
+        <i class="icon-chevron-down citation-chevron"></i>
+      </div>
+
+      <div class="citation-dropdown">
+        <ul>
+          <% @post.citations.each do |citation| %>
+            <li>
+              <%= link_to citation.text, citation.url, rel: 'nofollow', target: '_blank' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
 
-    <div class="citation-dropdown">
-      <ul>
-        <% @post.citations.each do |citation| %>
-          <li>
-            <%= link_to citation.text, citation.url, rel: 'nofollow', target: '_blank' %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <% end %>
 
   <% if @post.stars.present? %>
     <div class="post-review-stars" itemprop="review" itemscope itemtype="http://schema.org/Review">
