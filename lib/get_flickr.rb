@@ -5,7 +5,7 @@ module GetFlickr
   FlickRaw.shared_secret=ENV['FLICKR_SECRET']
 
   def update_flickr_urls
-    /(\d*)\D*\z/.match(self.flickr_url)
+    /\/(\d+)\/.*\z/.match(self.flickr_url)
     sizes = flickr.photos.getSizes photo_id: $1
 
     thumbnail = get_thumbnail(sizes)
