@@ -46,11 +46,13 @@
   <h2 class="h2-margin-left">Post Categories</h2>
   <ul class="post-tags">
     <% Category.order('tagged_posts DESC').each do |category| %>
-      <li>
-        <a href="<%= category_path(category) %>" class="<%= cycle('odd', 'even') %>">
-          <%= category.name %> (<%= category.tagged_posts %>)
-        </a>
-      </li>
+      <% if category.tagged_posts > 0 %>
+        <li>
+          <a href="<%= category_path(category) %>" class="<%= cycle('odd', 'even') %>">
+            <%= category.name %> (<%= category.tagged_posts %>)
+          </a>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
