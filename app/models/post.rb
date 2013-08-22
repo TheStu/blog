@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
   end
 
   def content_with_review_ads
-    if self.is_a_review
+    if self.is_a_review?
 
       content_with_ads = content
       products = Product.order('sale_price DESC').where("post_id = ?", self.id)
@@ -62,7 +62,7 @@ class Post < ActiveRecord::Base
       end
       return content_with_ads
     else
-      self.content
+      content
     end
   end
 end
