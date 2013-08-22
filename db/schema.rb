@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130728165101) do
+ActiveRecord::Schema.define(version: 20130822210438) do
 
   create_table "ads", force: true do |t|
     t.string   "ad_content"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130728165101) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.integer  "tagged_posts"
+    t.integer  "tagged_posts", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
