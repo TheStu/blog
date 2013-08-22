@@ -8,8 +8,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.search(params[:q]).map(&:id)
-    @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
+    if params[:q].present?
+      @posts = Post.search(params[:q]).map(&:id)
+      @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
+    else
+      @posts = Post.order('created_at DESC')
+    end
 
     respond_to do |format|
       format.html
