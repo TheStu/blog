@@ -654,6 +654,12 @@ body {
     border: 3px solid #e3e3e3;
     padding: 4px;
   }
+  ul, ol {
+    li {
+      padding: 3px 0;
+      line-height: 24px;
+    }
+  }
   .img-right {
     margin: 0 0 10px 10px;
   }
@@ -712,6 +718,11 @@ body {
         padding: 5px;
         font-size: 12px;
         line-height: 15px;
+      }
+      .related-gear-guide-title {
+        @extend .related-post-title;
+        font-size: 15px;
+        line-height: 20px;
       }
       &:hover {
         opacity: 1;
@@ -824,6 +835,12 @@ body {
   color: $button_green;
 }
 
+.gear-guide-well {
+  @extend .well;
+  padding: 5px;
+  font-weight: bold;
+}
+
 .gear-guide-content {
   font-size: 15px;
   line-height: 24px;
@@ -834,8 +851,17 @@ body {
   }
   ul, ol {
     li {
-      padding: 2px 0;
+      padding: 3px 0;
+      line-height: 24px;
     }
+  }
+  .well ol li {
+    padding: 0;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  table tbody td {
+    padding: 0 5px;
   }
   .no-border {
     border: 0;

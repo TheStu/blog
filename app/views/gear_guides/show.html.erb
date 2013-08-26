@@ -77,12 +77,27 @@
 
   </div>
 
+  <div class="gear-guide-well">
+    Did we get something in this gear guide wrong? <%= link_to "Let us know!", new_contact_path %>
+  </div>
+
   <div class="gear-guide-content"  itemprop="articleBody">
     <%= @gear_guide.content.html_safe %>
   </div>
 
   <h2>Popular Gear Guides</h2>
 
+  <div class="bottom-of-post">
 
+    <% @popular.each_with_index do |guide, i| %>
+      <div class="related-div <%= i == 3 ? 'last-related-pic' : '' %>">
+        <a href="<%= gear_guide_path(guide) %>">
+          <%= image_tag "/gear-guide/thumbnails/#{guide.title.parameterize}.jpg", alt: guide.title, class: "related-post-pic" %>
+          <%= content_tag :span, guide.title, class: 'related-gear-guide-title' %>
+        </a>
+      </div>
+    <% end %>
+
+  </div>
 
 </div>

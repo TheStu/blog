@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822210438) do
+ActiveRecord::Schema.define(version: 20130826204747) do
 
   create_table "ads", force: true do |t|
     t.string   "ad_content"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20130822210438) do
     t.string   "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "view_count",       default: 0
   end
 
   create_table "posts", force: true do |t|

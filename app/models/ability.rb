@@ -9,6 +9,7 @@ class Ability
       can :dashboard              # grant access to the dashboard
     else
       can :read_section, :section
+      can :read_feed, :feed
       can :read, :all
     end
   end

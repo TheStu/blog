@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  authorize_resource except: :section
+  authorize_resource except: [:section, :feed]
 
   include PostCount # for unless bot? method in private
 
@@ -12,12 +12,7 @@ class PostsController < ApplicationController
       @posts = Post.search(params[:q]).map(&:id)
       @groups = Post.find(@posts).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
     else
-      @posts = Post.order('created_at DESC')
-    end
-
-    respond_to do |format|
-      format.html
-      format.atom
+      redirect_to root_path
     end
   end
 
@@ -82,6 +77,15 @@ class PostsController < ApplicationController
     authorize! :read_section, :section
     @section = params[:section]
     @groups = Post.order('created_at DESC').where("section = ?", @section).in_groups_of(2, false).paginate(page: params[:page], per_page: 4)
+  end
+
+  def feed
+    authorize! :read_feed, :feed
+    @posts = Post.order('created_at DESC')
+
+    respond_to do |format|
+      format.atom
+    end
   end
 
   private

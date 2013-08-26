@@ -10,6 +10,7 @@ Blog::Application.routes.draw do
 
   get "statics/home"
   get "/about", to: 'statics#about'
+  get 'feed', to: 'posts#feed', as: 'feed'
 
   resources :gear_guides, path: 'gear-guides', except: :index
   resources :posts do
