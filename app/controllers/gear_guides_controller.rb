@@ -13,7 +13,7 @@ class GearGuidesController < ApplicationController
   # GET /gear_guides/1.json
   def show
     impression_count(@gear_guide)
-    @popular = GearGuide.order('view_count DESC').first(4)
+    @popular = GearGuide.order('view_count DESC').where('id != ?', @gear_guide.id).first(4)
   end
 
   # GET /gear_guides/new
