@@ -10,7 +10,8 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :citations, :reject_if => lambda { |a| a[:url].blank? or a[:text].blank? }, :allow_destroy => true
 
-  after_save :update_flickr_urls
+  after_create :update_flickr_urls
+  after_update :update_flickr_urls, if: Proc.new { |post| post.flickr_url_changed? }
   after_save :update_review_products
 
   validates_presence_of :title, :content, :flickr_url, :picture_alt_text, :section,
@@ -34,7 +35,12 @@ class Post < ActiveRecord::Base
 
   def find_by_categories
     tag_ids = self.categories.collect{|a| a.id}
-    Post.includes(:categorizations).where(["categorizations.category_id IN (?) AND categorizations.post_id != ?", categories, self.id]).references(:categorizations)
+    found = Post.includes(:categorizations).where(["categorizations.category_id IN (?) AND categorizations.post_id != ?", categories, self.id]).references(:categorizations)
+    if found.count > 0
+      return found
+    else
+      return Post.order('all_time_view_count DESC').first(4)
+    end
   end
 
   def content_with_review_ads

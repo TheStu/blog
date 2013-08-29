@@ -34,6 +34,9 @@
     <div class="social-button">
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= post_url(@post) %>" data-via="stuwashere" data-count="vertical">Tweet</a>
     </div>
+    <div class="social-button">
+      <a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" ><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+    </div>
   </div>
 
   <h1 itemprop="headline"><%= @post.title %></h1>
@@ -72,7 +75,7 @@
   </div>
 
   <div class="post-header-pic">
-    <%= link_to image_tag(@post.pic_large_url, alt: @post.picture_alt_text, title: @post.picture_alt_text), @post.pic_large_url, class: 'fancybox' %>
+    <%= link_to image_tag(@post.pic_large_url, alt: @post.picture_alt_text), @post.pic_large_url, class: 'fancybox' %>
   </div>
 
   <% if @post.citations.present? %>

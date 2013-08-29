@@ -130,6 +130,7 @@ $( document ).ready(function() {
       // add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=200103733347528', 'facebook-jssdk');
       // Twitter SDK
       add('//platform.twitter.com/widgets.js');
+      add('//assets.pinterest.com/js/pinit.js');
 
       fjs.parentNode.insertBefore(frag, fjs);
   }(document, 'script'));
