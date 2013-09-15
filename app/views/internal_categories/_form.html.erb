@@ -1,0 +1,21 @@
+<%= form_for(@internal_category) do |f| %>
+  <% if @internal_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@internal_category.errors.count, "error") %> prohibited this internal_category from being saved:</h2>
+
+      <ul>
+      <% @internal_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create Internal Category', class: 'my-btn' %>
+  </div>
+<% end %>

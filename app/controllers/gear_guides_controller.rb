@@ -75,7 +75,7 @@ class GearGuidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gear_guide_params
-      params.require(:gear_guide).permit(:user_id, :title, :content, :meta_description)
+      params.require(:gear_guide).permit(:user_id, :title, :content, :meta_description, internal_category_ids: [])
     end
 
     def impression_count(guide)

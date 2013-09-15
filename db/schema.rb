@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826204747) do
+ActiveRecord::Schema.define(version: 20130910211041) do
 
   create_table "ads", force: true do |t|
     t.string   "ad_content"
@@ -85,6 +85,24 @@ ActiveRecord::Schema.define(version: 20130826204747) do
     t.integer  "view_count",       default: 0
   end
 
+  create_table "internal_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "internal_categorizations", force: true do |t|
+    t.string   "internal_categorizable_type"
+    t.integer  "internal_categorizable_id"
+    t.integer  "internal_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "internal_categorizations", ["internal_categorizable_id"], name: "index_internal_categorizations_on_internal_categorizable_id", using: :btree
+  add_index "internal_categorizations", ["internal_categorizable_type"], name: "index_internal_categorizations_on_internal_categorizable_type", using: :btree
+  add_index "internal_categorizations", ["internal_category_id"], name: "index_internal_categorizations_on_internal_category_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -135,6 +153,17 @@ ActiveRecord::Schema.define(version: 20130826204747) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "retailers", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.text     "what_i_say"
+    t.text     "what_they_say"
+    t.boolean  "cottage_industry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "avantlink_searchable"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

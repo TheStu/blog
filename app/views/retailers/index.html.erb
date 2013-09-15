@@ -1,0 +1,35 @@
+<h1>Listing retailers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>What i say</th>
+      <th>What they say</th>
+      <th>Cottage industry</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @retailers.each do |retailer| %>
+      <tr>
+        <td><%= retailer.name %></td>
+        <td><%= retailer.url %></td>
+        <td><%= retailer.what_i_say %></td>
+        <td><%= retailer.what_they_say %></td>
+        <td><%= retailer.cottage_industry %></td>
+        <td><%= link_to 'Show', retailer %></td>
+        <td><%= link_to 'Edit', edit_retailer_path(retailer) %></td>
+        <td><%= link_to 'Destroy', retailer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Retailer', new_retailer_path %>

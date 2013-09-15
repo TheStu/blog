@@ -116,9 +116,11 @@ input[type="checkbox"] {
     border: 3px solid #000;
     border-left-width: 0px;
     @extend .my-btn;
+    font-size: 14px;
+    padding: 5px 10px;
   }
   ul > li.disabled a:hover, ul > li.active a:hover, ul > li.disabled span:hover, ul > li.active span:hover {
-    background-color: #fff;
+    background-color: #999;
   }
   ul > li:first-child > a, ul > li:first-child > span {
     @include border-top-left-radius(0);
@@ -128,6 +130,9 @@ input[type="checkbox"] {
   ul > li:last-child > a, ul > li:last-child > span {
     @include border-top-right-radius(0);
     @include border-bottom-right-radius(0);
+  }
+  ul > li > .page-inactive, ul > li > .page-inactive:hover {
+    background-color: #999;
   }
 }
 
@@ -235,6 +240,24 @@ body {
     .header-meta > li:last-child {
       border-left: 1px solid $light-brown;
     }
+    .header-evergreen {
+      border-left: 1px solid $light-brown;
+    }
+    .pull-left li a.dropdown-toggle, .pull-left li.dropdown.open a.dropdown-toggle, .pull-left li a.brands-toggle, .pull-left li.brands.open a.brands-toggle, .pull-left li a.brands-toggle, .pull-left li.brands.open a.brands-toggle, .pull-left li a.brands-toggle, .pull-left li.brands.open a.brands-toggle {
+      height: 20px;
+      padding: 13px 15px 13px;
+      .caret {
+        margin-top: 9px;
+      }
+    }
+    .header-sections {
+      margin-right: 0;
+    }
+    .pull-right li a.dropdown-toggle {
+      .caret {
+        margin-top: 11px;
+      }
+    }
     .nav {
       .dropdown-menu {
         @include border-radius(0px);
@@ -302,7 +325,7 @@ body {
     content: '';
     border: 0;
   }
-  .nav li a.dropdown-toggle, .nav li.dropdown.open a.dropdown-toggle {
+  .nav li a.dropdown-toggle, .nav li.dropdown.open a.dropdown-toggle, .nav li a.brands-toggle, .nav li.brands.open a.brands-toggle {
     font-size: 16px;
     color: #fff;
     height: 26px;
@@ -310,14 +333,11 @@ body {
       color: #fff;
     }
   }
-  .nav li.dropdown > .dropdown-toggle:hover, .nav li.dropdown.open > .dropdown-toggle, .nav li.dropdown.active > .dropdown-toggle, .nav li.dropdown.open.active > .dropdown-toggle {
+  .nav li.dropdown > .dropdown-toggle:hover, .nav li.dropdown.open > .dropdown-toggle, .nav li.dropdown.active > .dropdown-toggle, .nav li.dropdown.open.active > .dropdown-toggle, .nav li.brands > .brands-toggle:hover, .nav li.brands.open > .brands-toggle, .nav li.brands.active > .brands-toggle, .nav li.brands.open.active > .brands-toggle {
     background-color: $header-hover;
   }
-  .nav li.dropdown > .dropdown-toggle:hover {
+  .nav li.dropdown > .dropdown-toggle:hover, .nav li.brands > .brands-toggle:hover {
     @include transition(all .5s linear);
-  }
-  .nav .dropdown-toggle .caret {
-    margin-top: 11px;
   }
   .nav li.dropdown > .dropdown-toggle .caret, .nav li.dropdown > .dropdown-toggle:hover .caret, .nav li.dropdown.open > .dropdown-toggle .caret, .nav li.dropdown.active > .dropdown-toggle .caret, .nav li.dropdown.open.active > .dropdown-toggle .caret {
     border-top-color: #fff;
@@ -823,6 +843,163 @@ body {
 
 #gear_guide_title, #gear_guide_meta_description {
   width: 520px;
+}
+
+///////////////////////////////////////////
+//                                       //
+//              Brands                   //
+//                                       //
+///////////////////////////////////////////
+
+.brand-h2 {
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+.cottage-pic {
+  margin-left: 10px;
+  vertical-align: -4px;
+}
+
+.brand-text {
+  display: inline-block;
+  width: 350px;
+  margin-right: 20px;
+}
+
+.brand-categories {
+  display: inline-block;
+  vertical-align: top;
+  table {
+    width: 205px;
+    td {
+      padding: 10px 15px;
+      background-color: #ddd;
+      border: 1px solid #fff;
+    }
+    .brand-category-indicator {
+      width: 14px;
+    }
+    tr:first-child {
+      td:first-child {
+        @include border-top-left-radius(5px);
+      }
+      td:last-child {
+        @include border-top-right-radius(5px);
+      }
+    }
+    tr:last-child {
+      td:first-child {
+        @include border-bottom-left-radius(5px);
+      }
+      td:last-child {
+        @include border-bottom-right-radius(5px);
+      }
+    }
+  }
+}
+
+.brand-select-form {
+  margin-bottom: 0;
+  .brand-gear-select {
+    width: 150px;
+    margin-bottom: 0;
+  }
+  .brand-cottage-check {
+    margin-right: 7px;
+  }
+}
+
+
+///////////////////////////////////////////
+//                                       //
+//           Retailers#Form              //
+//                                       //
+///////////////////////////////////////////
+
+#retailer_what_they_say, #retailer_what_i_say {
+  width: 520px;
+  height: 300px;
+}
+
+///////////////////////////////////////////
+//                                       //
+//             Product Search            //
+//                                       //
+///////////////////////////////////////////
+
+.product-search-results {
+  list-style: none;
+  margin: 20px 0 0;
+  li {
+    position: relative;
+    margin-bottom: 30px;
+    .result-img {
+      text-align: center;
+      line-height: 100px;
+      display: inline-block;
+      height: 100px;
+      width: 100px;
+      border: 3px solid #0088cc;
+      a {
+        img {
+          max-height: 80px;
+          max-width: 80px;
+          padding: 10px;
+        }
+      }
+    }
+    .result-meta {
+      display: inline-block;
+      vertical-align: top;
+      width: 465px;
+      .product-name {
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: underline;
+        line-height: 24px;
+      }
+      .result-reg-price {
+        color: #333;
+        font-size: 18px;
+        display: block;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      .result-sale-price {
+        color: red;
+        font-size: 18px;
+        display: block;
+        line-height: 24px;
+        font-weight: bold;
+      }
+    }
+    .results-merchant {
+      position: absolute;
+      right: 0;
+      bottom: 5px;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+}
+
+.product-search-form-wrapper {
+  padding: 10px 0 0;
+  form {
+    margin: 0;
+    .product-search-query {
+      margin: 0;
+      width: 222px;
+
+    }
+    .product-search-submit {
+      @include border-radius(0);
+      border: 3px solid black;
+      padding: 9px 15px;
+      margin-left: -7px;
+    }
+  }
 }
 
 ///////////////////////////////////////////

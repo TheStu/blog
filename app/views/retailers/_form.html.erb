@@ -1,0 +1,48 @@
+<%= form_for(@retailer) do |f| %>
+  <% if @retailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retailer.errors.count, "error") %> prohibited this retailer from being saved:</h2>
+
+      <ul>
+      <% @retailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :what_i_say %><br>
+    <%= f.text_area :what_i_say %>
+  </div>
+  <div class="field">
+    <%= f.label :what_they_say %><br>
+    <%= f.text_area :what_they_say %>
+  </div>
+  <div class="field">
+    <%= f.check_box :cottage_industry %>
+    <%= f.label :cottage_industry %><br><br>
+  </div>
+  <div class="field">
+    <%= f.check_box :avantlink_searchable %>
+    <%= f.label :avantlink_searchable %><br><br>
+  </div>
+  <h3>Internal Categories</h3>
+  <%= hidden_field_tag "retailer[internal_category_ids][]", nil %>
+  <% InternalCategory.find_each do |category| %>
+    <%= check_box_tag "retailer[internal_category_ids][]", category.id, @retailer.internal_category_ids.include?(category.id), id: dom_id(category) %>
+    <%= label_tag dom_id(category), category.name %><br>
+  <% end %>
+  <br>
+  <div class="actions">
+    <%= f.submit 'Create Retailer', class: 'my-btn' %>
+  </div>
+<% end %>

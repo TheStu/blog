@@ -1,5 +1,6 @@
 <% provide(:title, @category.name) %>
 <% provide(:desc, "Look through the #{@category.tagged_posts} posts in the #{@category.name} here on Backpacking Talk") %>
+<% provide(:canonical, category_url(@category)) %>
 
 <h1><%= @category.name %> Category</h1>
 

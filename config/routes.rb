@@ -8,9 +8,10 @@ Blog::Application.routes.draw do
 
   root :to => "statics#home"
 
-  get "statics/home"
   get "/about", to: 'statics#about'
   get 'feed', to: 'posts#feed', as: 'feed'
+  get "backpacking-brands", to: 'statics#brands', as: 'brands'
+  get 'results', to: 'statics#results', as: 'results'
 
   resources :gear_guides, path: 'gear-guides', except: :index
   resources :posts do
@@ -19,6 +20,8 @@ Blog::Application.routes.draw do
     end
   end
   resources :contact, only: [:new, :create], path: 'contact'
-  resources :categories
+  resources :categories, except: :index
+  resources :retailers, except: [:index, :show]
+  resources :internal_categories, except: [:index, :show]
 
 end

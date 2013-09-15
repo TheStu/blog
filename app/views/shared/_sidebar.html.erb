@@ -26,6 +26,18 @@
       <%= render "shared/tabs/reviews" %>
     </div>
   </div>
+
+  <% unless params[:controller] == 'statics' and params[:action] == 'results' %>
+    <div class="product-search-wrapper">
+      <div class="product-search-form-wrapper">
+        <%= form_tag results_path, method: 'get', class: 'product-search-form' do %>
+          <%= text_field_tag :q, params[:q], class: 'product-search-query', placeholder: 'Product Search' %>
+          <%= submit_tag "Search", name: nil, class: 'product-search-submit my-btn' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <h2 class="h2-margin-left">Daily Gear Deals</h2>
   <ul class="dotd-list">
     <% Dotd.find_each do |deal| %>

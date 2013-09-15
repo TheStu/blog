@@ -18,6 +18,7 @@
 //= require bootstrap-tab.js
 //= require bootstrap-alert.js
 //= require bootstrap-dropdown.js
+//= require bootstrap-tooltip.js
 //= require ckeditor/init
 //= require jquery.ui.effect-shake
 //= require_tree .

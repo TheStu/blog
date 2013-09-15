@@ -1,5 +1,6 @@
 <% provide(:title, @gear_guide.title) %>
 <% provide(:desc, @gear_guide.meta_description) %>
+<% provide(:canonical, gear_guide_url(@gear_guide)) %>
 <% content_for :head do %>
   <meta property="og:title" content="<%= @gear_guide.title %>" />
   <meta property="og:type" content="article" />
@@ -83,6 +84,16 @@
   <div class="gear-guide-well">
     Did we get something in this gear guide wrong? <%= link_to "Let us know!", new_contact_path %>
   </div>
+
+  <% if @gear_guide.internal_categories.present? %>
+
+    <div class="gear-guide-well">
+
+      <b>Find brands that make <%= @gear_guide.internal_categories.map { |gg| link_to gg.name, brands_path(gear: gg.id) }.join(', ').html_safe %></b>
+
+    </div>
+
+  <% end %>
 
   <div class="gear-guide-content"  itemprop="articleBody">
     <%= @gear_guide.content.html_safe %>

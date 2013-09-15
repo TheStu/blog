@@ -37,6 +37,13 @@
       <%= f.label :meta_description %><br>
       <%= f.text_field :meta_description %>
     </div>
+    <h3>Internal Categories</h3>
+    <%= hidden_field_tag "gear_guide[internal_category_ids][]", nil %>
+    <% InternalCategory.find_each do |category| %>
+      <%= check_box_tag "gear_guide[internal_category_ids][]", category.id, @gear_guide.internal_category_ids.include?(category.id), id: dom_id(category) %>
+      <%= label_tag dom_id(category), category.name %><br>
+    <% end %>
+    <br>
     <div class="actions">
       <%= f.submit 'Create Gear Guide', class: 'my-btn' %>
     </div>
