@@ -53,12 +53,12 @@
         <br>
       <% end %>
 
-      <div class="brand-text">
-        <% if brand.what_they_say.present? %>
+      <% if brand.what_they_say.present? %>
+        <div class="brand-text">
           <h3>About</h3>
           <%= simple_format(brand.what_they_say) %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <div class="brand-categories">
         <h3>What They Make</h3>
         <table>
